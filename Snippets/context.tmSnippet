@@ -3,17 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>Then "${1:description}" do
-$0
-end
-</string>
+	<string>context "${1:context}" do
+  $0
+end</string>
 	<key>name</key>
-	<string>Then step matcher</string>
+	<string>context</string>
 	<key>scope</key>
 	<string>source.ruby.rspec</string>
 	<key>tabTrigger</key>
-	<string>Then</string>
+	<string>con</string>
 	<key>uuid</key>
-	<string>63AAF6CE-01A1-4054-81A2-926408C22D9A</string>
+	<string>A373048F-BDEC-458B-8886-79058296C8DC</string>
 </dict>
 </plist>

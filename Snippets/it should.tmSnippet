@@ -3,17 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>When "${1:description}" do
-$0
-end
-</string>
+	<string>it "should ${1:do something}"${2: do
+  $0
+end}</string>
 	<key>name</key>
-	<string>When step matcher</string>
+	<string>it (should do something)</string>
 	<key>scope</key>
 	<string>source.ruby.rspec</string>
 	<key>tabTrigger</key>
-	<string>When</string>
+	<string>its</string>
 	<key>uuid</key>
-	<string>9638A4B3-C55D-4F3E-B07D-D9380A26B8CD</string>
+	<string>ED8BDE00-5FD7-4E47-84FD-4B971557FD73</string>
 </dict>
 </plist>

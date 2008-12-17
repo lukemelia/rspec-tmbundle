@@ -17,28 +17,45 @@ module Spec
         end
       end
       
+      module Framework
+        def rails?
+          File.exist?(File.join(self, 'config', 'boot.rb'))
+        end
+
+        def merb?
+          File.exist?(File.join(self, 'config', 'init.rb'))
+        end
+      end
+      
       def twin(path)
         if path =~ /^(.*?)\/(lib|app|spec)\/(.*?)$/
-          prefix, parent, rest = $1, $2, $3
-          
+          framework, parent, rest = $1, $2, $3
+          framework.extend Framework
+
           case parent
             when 'lib', 'app' then
-              if rails?(prefix)
+              if framework.rails? || framework.merb?
                 path = path.gsub(/\/app\//, "/spec/")
                 path = path.gsub(/\/lib\//, "/spec/lib/")
+                path = path.gsub(/application\.rb/, 'application_controller.rb')
               else
                 path = path.gsub(/\/lib\//, "/spec/")
               end
               path = path.gsub(/\.rb$/, "_spec.rb")
               path = path.gsub(/\.erb$/, ".erb_spec.rb")
+              path = path.gsub(/\.haml$/, ".haml_spec.rb")
               path = path.gsub(/\.rhtml$/, ".rhtml_spec.rb")
+              path = path.gsub(/\.rjs$/, ".rjs_spec.rb")
             when 'spec' then
+              path = path.gsub(/\.rjs_spec\.rb$/, ".rjs")
               path = path.gsub(/\.rhtml_spec\.rb$/, ".rhtml")
               path = path.gsub(/\.erb_spec\.rb$/, ".erb")
+              path = path.gsub(/\.haml_spec\.rb$/, ".haml")
               path = path.gsub(/_spec\.rb$/, ".rb")
-              if rails?(prefix)
+              if framework.rails? || framework.merb?
                 path = path.gsub(/\/spec\/lib\//, "/lib/")
                 path = path.gsub(/\/spec\//, "/app/")
+                path = path.gsub(/application_controller\.rb/, 'application.rb')
               else
                 path = path.gsub(/\/spec\//, "/lib/")
               end
@@ -58,10 +75,6 @@ module Spec
           return "spec"
         end
         "file"
-      end
-      
-      def rails?(prefix)
-        File.exist?(File.join(prefix, 'config', 'boot.rb'))
       end
       
       def create?(relative_twin, file_type)
