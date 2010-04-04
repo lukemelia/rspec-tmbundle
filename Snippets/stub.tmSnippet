@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>with(${1})$2</string>
+	<string>${1:double}.stub(:${2:message})$3</string>
 	<key>name</key>
-	<string>with args</string>
+	<string>stub</string>
 	<key>scope</key>
 	<string>source.ruby.rspec</string>
 	<key>tabTrigger</key>
-	<string>wia</string>
+	<string>stu</string>
 	<key>uuid</key>
-	<string>3F3E8066-8C1A-40D1-85C7-9DC18C6A34BA</string>
+	<string>C4DD43A2-7E6A-4875-AF86-7EF7963BF83D</string>
 </dict>
 </plist>
